@@ -28,7 +28,7 @@ If the order sizes were different, or the grinder/brewer throughputs were differ
   - ideally we would take customer orders without blocking. If the pipeline is backed up we might block and lose a customer order (due to customer impatience), so care should be taken to handle this case in a real world application. My solution buffers the channels to a high amount which might not be adequate in a real world application.
 - metrics, logging and tracing
   - I only used the Go stdlib for this assignment, but in a real world application it would be good to collect better metrics, differentiate between debug / info logs, and to collect traces to get observability on how the application is performing.
-- batching of beans (beans are sent in on an on-order basis and not batched at the different stages)
+- batching of beans (beans are sent in on an per-order basis and not batched at the different stages)
 - different pipelining strategies
   - for ex, we could have different pools with different throughputs, we could send the big jobs to the high-throughput pools and the small jobs to a low-throughput pool.
 - my handling of float32 vs int is not elegant; ideally I'd just use one number-type.
